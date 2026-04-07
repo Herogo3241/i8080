@@ -25,6 +25,8 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 
+set(GLFW_BUILD_WAYLAND OFF CACHE BOOL "" FORCE) #for wsl
+
 add_subdirectory(vendored/glfw3)
 
 add_library(glad ${GLAD_DIR}/src/glad.c)
@@ -35,11 +37,21 @@ target_include_directories(glad PUBLIC ${GLAD_DIR}/include)
 add_executable(i8080 WIN32 ${SOURCES} ${IMGUI_SOURCES})
 
 target_include_directories(i8080 PRIVATE ${IMGUI_DIR} vendored/glfw3/include)
-target_link_libraries(i8080 PRIVATE
-    glfw
-    glad
-    opengl32   
-)
+if (WIN32)
+    target_link_libraries(i8080 PRIVATE
+        glfw
+        glad
+        opengl32
+    )
+else()
+    find_package(OpenGL REQUIRED)
+
+    target_link_libraries(i8080 PRIVATE
+        glfw
+        glad
+        OpenGL::GL
+    )
+endif()
 
 
 
