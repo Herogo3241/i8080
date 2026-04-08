@@ -10,11 +10,12 @@ namespace i8080::ui
     class UI
     {
     private:
-        void draw_cpu_window(core::CPU& cpu);
+        void cpu_window(const core::CPU& cpu);
+        void memory_window(const core::Memory& mem, const core::CPU &cpu);
         ImGuiIO& io;
     public:
         UI(GLFWwindow* window);
-        void render(core::CPU& cpu);
+        void render(const core::CPU& cpu, const core::Memory& mem);
         void shutdown();
         ~UI();
     };

@@ -21,7 +21,7 @@ namespace i8080::app
         {
             window.begin_frame();
 
-            ui.render(cpu);
+            ui.render(cpu, mem);
 
             window.end_frame();
         }
