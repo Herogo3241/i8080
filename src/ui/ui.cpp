@@ -91,9 +91,7 @@ namespace i8080::ui
             if (ImGui::BeginTable("MemTable", 18, flags, ImVec2(0, 0))) { // 1 (Addr) + 16 (Data) + 1 (Ascii)
                 ImGui::TableSetupColumn("Addr", ImGuiTableColumnFlags_WidthFixed, 40.0f);
                 for (int i = 0; i < 16; i++) {
-                    char buf[3];
-                    sprintf(buf, "%02X", i);
-                    ImGui::TableSetupColumn(buf, ImGuiTableColumnFlags_WidthFixed, 22.0f);
+                    ImGui::TableSetupColumn(memory_table_header[i], ImGuiTableColumnFlags_WidthFixed, 22.0f);
                 }
                 ImGui::TableSetupColumn("ASCII", ImGuiTableColumnFlags_WidthStretch);
                 ImGui::TableSetupScrollFreeze(0, 1);
@@ -184,6 +182,12 @@ namespace i8080::ui
 
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
+
+
+        // setting header
+        for(int i = 0; i < 16; i++){
+            sprintf(memory_table_header[i], "%02X", i);
+        }
     }
 
     void UI::render(const core::CPU& cpu, const core::Memory& mem) {

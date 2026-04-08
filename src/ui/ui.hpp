@@ -15,6 +15,8 @@ namespace i8080::ui
         ImGuiIO& io;
 
         bool autoscroll = false;
+
+        char memory_table_header[16][3];
     public:
         UI(GLFWwindow* window);
         void render(const core::CPU& cpu, const core::Memory& mem);
@@ -23,4 +25,4 @@ namespace i8080::ui
     };
 
 
-} // namespace i080::ui
+} // namespace i8080::ui
