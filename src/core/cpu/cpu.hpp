@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "memory/memory.hpp"
+#include "../memory/memory.hpp"
 
 namespace i8080::core {
     class CPU {
@@ -29,8 +29,8 @@ namespace i8080::core {
             }
         } flags;
 
-        uint16_t sp; //stack pointer
-        uint16_t pc; // program counter
+        uint16_t SP; //stack pointer
+        uint16_t PC; // program counter
         
 
 
