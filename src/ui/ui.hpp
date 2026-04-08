@@ -13,6 +13,8 @@ namespace i8080::ui
         void cpu_window(const core::CPU& cpu);
         void memory_window(const core::Memory& mem, const core::CPU &cpu);
         ImGuiIO& io;
+
+        bool autoscroll = false;
     public:
         UI(GLFWwindow* window);
         void render(const core::CPU& cpu, const core::Memory& mem);

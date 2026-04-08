@@ -16,8 +16,8 @@ namespace i8080::core {
             bool C;   // Carry Flag
 
             uint8_t to_byte() const {
-                return (S << 7) | (Z << 6) | (0 << 5) | (AC << 4) | (0 << 3) | (P << 2) |
-                    (1 << 1) | C;
+                return (static_cast<uint8_t>(S) << 7) | (static_cast<uint8_t>(Z) << 6) | (0 << 5) | (static_cast<uint8_t>(AC) << 4) | (0 << 3) | (static_cast<uint8_t>(P) << 2) |
+                    (1 << 1) | static_cast<uint8_t>(C);
             }
 
             void from_byte(uint8_t flag) {
