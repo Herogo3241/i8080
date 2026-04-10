@@ -5,7 +5,10 @@
 namespace i8080::platform
 {
     Window::Window(const char* title, int width, int height) {
-        if (!glfwInit()) {
+#ifdef __linux__
+	    setenv("GLFW_ACCESS_X11", "1", 1);
+#endif
+	if (!glfwInit()) {
             std::cerr << "[GLFW] Initialization failed\n";
             return;
         }
@@ -13,6 +16,7 @@ namespace i8080::platform
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
 
         handle = glfwCreateWindow(width, height, title, nullptr, nullptr);
         if (!handle) {

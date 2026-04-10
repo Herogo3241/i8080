@@ -2,6 +2,7 @@
 #include "app/app.hpp"
 
 
+
 int app_main(int argc, char* argv[]);
 
 #if defined(_WIN32)
@@ -34,7 +35,7 @@ int main(int argc, char* argv[]){
 
 #endif
 
-int app_main(int argc, char* argv[]) {
+int app_main(int argc, char* argv[]) {	
     i8080::app::App app;
     app.run();
     return 0;
